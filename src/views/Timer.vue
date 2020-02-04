@@ -1,5 +1,5 @@
 <template>
-	<div class="timer">
+	<div class="timer" v-bind:style="styleObject">
 		<span>{{
 			hours | padding
 		}}</span>:<span>{{
@@ -14,14 +14,18 @@
 export default {
 	name: 'Timer',
 	props: {
-		time: Object
+		time: Object,
+		font: Object
 	},
 	data() {
 		return {
 			hours: this.time.hours,
 			minutes: this.time.minutes,
 			seconds: this.time.seconds,
-			interval: null
+			interval: null,
+			styleObject: {
+				fontSize: this.font.size + 'px'
+			}
 		}
 	},
 	filters: {

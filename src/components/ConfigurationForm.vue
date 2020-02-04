@@ -1,14 +1,53 @@
 <template>
 	<form @submit="submit">
-		<p class="time">
-			<input size="2" v-model="hours" required /> :
-			<input size="2" v-model="minutes" @input="inputHandler" required />
-		</p>
+		<fieldset>
+			<legend>Time</legend>
+
+			<label>
+				<span>Hours:</span>
+				<input size="2" v-model="hours" required />
+			</label>
+
+			<label>
+				<span>Minutes:</span>
+				<input size="2" v-model="minutes" @input="inputHandler" required />
+			</label>
+		</fieldset>
+
+		<fieldset>
+			<legend>Font</legend>
+
+			<label>
+				<span>Size:</span>
+				<input size="2" v-model="fontSize" required />
+			</label>
+		</fieldset>
+
 		<p>
 			<button type="submit">Open timer</button>
 		</p>
 	</form>
 </template>
+
+<style>
+	fieldset {
+		> label {
+			display: table-row;
+			/* padding: 0.4em 0; */
+
+			> span,
+			> input {
+				display: table-cell;
+				padding: 0 0.4em;
+			}
+
+			> span {
+				padding-top: 0.2em;
+				padding-bottom: 0.2em;
+			}
+		}
+	}
+</style>
 
 <script>
 export default {
@@ -19,6 +58,9 @@ export default {
 				hours: '00',
 				minutes: '05',
 				seconds: '00'
+			},
+			font: {
+				size: 180
 			}
 		}
 	},
@@ -51,8 +93,19 @@ export default {
 			set(value) {
 				this.time.seconds = this.formatTime(value)
 			}
+		},
+
+		fontSize: {
+			get() {
+				return this.font.size
+			},
+
+			set(value) {
+				this.font.size = value
+			}
 		}
 	},
+
 	methods: {
 		inputHandler(event) {
 			event.preventDefault()
@@ -68,7 +121,7 @@ export default {
 			let routeData = this.$router.resolve(
 				{
 					name: 'timer',
-					query: { time: this.time }
+					query: { time: this.time, font: this.font }
 				}
 			)
 			window.open(routeData.href, '_blank')
