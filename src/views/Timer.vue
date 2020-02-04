@@ -1,8 +1,8 @@
 <template>
 	<div class="timer" v-bind:style="styleObject">
-		<span>{{
+		<span v-if="hours > 0"><span>{{
 			hours | padding
-		}}</span>:<span>{{
+		}}</span>:</span><span>{{
 			minutes | padding
 		}}</span>:<span>{{
 			seconds | padding
