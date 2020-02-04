@@ -60,7 +60,7 @@ export default {
 				seconds: '00'
 			},
 			font: {
-				size: 180
+				size: 160
 			}
 		}
 	},
