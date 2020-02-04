@@ -18,6 +18,11 @@
 				<span>Minutes:</span>
 				<input size="2" v-model="minutes" @input="inputHandler" required />
 			</label>
+
+			<label>
+				<span>Seconds:</span>
+				<input size="2" v-model="seconds" @input="inputHandler" required />
+			</label>
 		</fieldset>
 
 		<fieldset>
