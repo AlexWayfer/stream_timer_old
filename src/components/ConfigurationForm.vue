@@ -1,6 +1,12 @@
 <template>
 	<form @submit="submit">
 		<fieldset>
+			<legend>Text before</legend>
+
+			<input size="10" v-model="textBefore" required />
+		</fieldset>
+
+		<fieldset>
 			<legend>Time</legend>
 
 			<label>
@@ -59,6 +65,9 @@ export default {
 				minutes: '05',
 				seconds: '00'
 			},
+			text: {
+				before: 'AFK'
+			},
 			font: {
 				size: 160
 			}
@@ -95,6 +104,16 @@ export default {
 			}
 		},
 
+		textBefore: {
+			get() {
+				return this.text.before
+			},
+
+			set(value) {
+				this.text.before = value
+			}
+		},
+
 		fontSize: {
 			get() {
 				return this.font.size
@@ -121,7 +140,7 @@ export default {
 			let routeData = this.$router.resolve(
 				{
 					name: 'timer',
-					query: { time: this.time, font: this.font }
+					query: { time: this.time, text: this.text, font: this.font }
 				}
 			)
 			window.open(routeData.href, '_blank')

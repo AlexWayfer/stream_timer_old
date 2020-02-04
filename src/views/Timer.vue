@@ -1,5 +1,6 @@
 <template>
 	<div class="timer" v-bind:style="styleObject">
+		{{ text.before }}
 		<span v-if="hours > 0"><span>{{
 			hours | padding
 		}}</span>:</span><span>{{
@@ -15,6 +16,7 @@ export default {
 	name: 'Timer',
 	props: {
 		time: Object,
+		text: Object,
 		font: Object
 	},
 	data() {
