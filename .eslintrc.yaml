@@ -1,0 +1,23 @@
+root: true
+
+env:
+  node: true
+
+extends:
+  - 'plugin:vue/essential'
+  - '@vue/standard'
+
+rules:
+  no-tabs:
+    - error
+    - allowIndentationTabs: true
+  indent:
+    - error
+    - tab
+  space-before-function-paren:
+    - error
+    - never
+
+parserOptions:
+  parser: babel-eslint
+  sourceType: module
