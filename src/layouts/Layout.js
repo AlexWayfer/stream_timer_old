@@ -14,7 +14,8 @@ export default {
 		if (!Vue.options.components[this.name]) {
 			Vue.component(
 				this.name,
-				() => import(`../layouts/${this.name}.vue`)
+				// https://github.com/babel/babel-eslint/issues/530#issuecomment-582626985
+				() => import('../layouts/' + this.name + '.vue')
 			)
 		}
 
