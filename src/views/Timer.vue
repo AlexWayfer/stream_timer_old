@@ -37,7 +37,7 @@ export default {
 	},
 	methods: {
 		countdown() {
-			console.debug('countdown!')
+			// console.debug('countdown!')
 			// console.debug(this.time)
 			// console.debug(typeof this.time)
 			if (this.seconds > 0) {
