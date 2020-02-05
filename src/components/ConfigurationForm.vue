@@ -142,7 +142,7 @@ export default {
 		},
 
 		submit() {
-			let routeData = this.$router.resolve(
+			const routeData = this.$router.resolve(
 				{
 					name: 'timer',
 					query: { time: this.time, text: this.text, font: this.font }
