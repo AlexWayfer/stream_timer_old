@@ -26,12 +26,43 @@
 		</fieldset>
 
 		<fieldset>
-			<legend>Font</legend>
+			<legend>Style</legend>
 
-			<label>
-				<span>Size:</span>
-				<input size="2" v-model="fontSize" required />
-			</label>
+			<fieldset>
+				<legend>Background</legend>
+
+				<label>
+					<span>Color:</span>
+					<input type="color" v-model="backgroundColor" required />
+				</label>
+
+				<label>
+					<span>Opacity:</span>
+					<input
+						type="range"
+						min="0"
+						max="1"
+						step="0.05"
+						v-model="backgroundOpacity"
+						required
+					/>
+					<span>{{ background.opacity | opacity }}</span>
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>Font</legend>
+
+				<label>
+					<span>Size:</span>
+					<input size="2" v-model="fontSize" required />
+				</label>
+
+				<label>
+					<span>Color:</span>
+					<input type="color" v-model="fontColor" required />
+				</label>
+			</fieldset>
 		</fieldset>
 
 		<p>
@@ -42,6 +73,8 @@
 
 <style>
 	fieldset {
+		margin: 0.4em;
+
 		> label {
 			display: table-row;
 			/* padding: 0.4em 0; */
@@ -50,6 +83,7 @@
 			> input {
 				display: table-cell;
 				padding: 0 0.4em;
+				vertical-align: middle;
 			}
 
 			> span {
@@ -73,8 +107,13 @@ export default {
 			text: {
 				before: 'AFK'
 			},
+			background: {
+				color: '#ffffff',
+				opacity: 0
+			},
 			font: {
-				size: 160
+				size: 160,
+				color: '#000000'
 			}
 		}
 	},
@@ -119,6 +158,26 @@ export default {
 			}
 		},
 
+		backgroundColor: {
+			get() {
+				return this.background.color
+			},
+
+			set(value) {
+				this.background.color = value
+			}
+		},
+
+		backgroundOpacity: {
+			get() {
+				return this.background.opacity
+			},
+
+			set(value) {
+				this.background.opacity = value
+			}
+		},
+
 		fontSize: {
 			get() {
 				return this.font.size
@@ -127,6 +186,22 @@ export default {
 			set(value) {
 				this.font.size = value
 			}
+		},
+
+		fontColor: {
+			get() {
+				return this.font.color
+			},
+
+			set(value) {
+				this.font.color = value
+			}
+		}
+	},
+
+	filters: {
+		opacity(value) {
+			return Number(value).toFixed(2)
 		}
 	},
 
@@ -145,7 +220,12 @@ export default {
 			const routeData = this.$router.resolve(
 				{
 					name: 'timer',
-					query: { time: this.time, text: this.text, font: this.font }
+					query: {
+						time: this.time,
+						text: this.text,
+						font: this.font,
+						background: this.background
+					}
 				}
 			)
 			window.open(routeData.href, '_blank')

@@ -1,15 +1,28 @@
 <template>
 	<div class="timer" v-bind:style="styleObject">
-		{{ text.before }}
-		<span v-if="hours > 0"><span>{{
-			hours | padding
-		}}</span>:</span><span>{{
-			minutes | padding
-		}}</span>:<span>{{
-			seconds | padding
-		}}</span>
+		<p>
+			{{ text.before }}
+			<span v-if="hours > 0"><span>{{
+				hours | padding
+			}}</span>:</span><span>{{
+				minutes | padding
+			}}</span>:<span>{{
+				seconds | padding
+			}}</span>
+		</p>
 	</div>
 </template>
+
+<style lang="postcss">
+	.timer {
+		width: 100vw;
+		height: 100vh;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>
 
 <script>
 export default {
@@ -17,16 +30,35 @@ export default {
 	props: {
 		time: Object,
 		text: Object,
-		font: Object
+		font: Object,
+		background: Object
 	},
 	data() {
 		return {
 			hours: this.time.hours,
 			minutes: this.time.minutes,
 			seconds: this.time.seconds,
-			interval: null,
-			styleObject: {
-				fontSize: this.font.size + 'px'
+			interval: null
+		}
+	},
+	computed: {
+		styleObject: {
+			get() {
+				return {
+					backgroundColor: this.backgroundColor,
+					fontSize: this.font.size + 'px',
+					color: this.font.color
+				}
+			}
+		},
+		opacityHex: {
+			get() {
+				return Math.floor(this.background.opacity * 255).toString(16)
+			}
+		},
+		backgroundColor: {
+			get() {
+				return this.background.color + this.opacityHex
 			}
 		}
 	},

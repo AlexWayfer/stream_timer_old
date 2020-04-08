@@ -9,8 +9,7 @@ extends:
 
 rules:
   no-tabs:
-    - error
-    - allowIndentationTabs: true
+    - off
   indent:
     - error
     - tab

@@ -7,6 +7,7 @@
 <style lang="postcss">
 	body {
 		font-family: sans-serif;
+		margin: 0;
 	}
 </style>
 
