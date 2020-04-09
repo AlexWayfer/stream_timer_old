@@ -27,17 +27,33 @@
 
 			<label>
 				<span>Hours:</span>
-				<input size="2" v-model="hours" required />
+				<input type="number" v-model="hours" min="0" size="2" required />
 			</label>
 
 			<label>
 				<span>Minutes:</span>
-				<input size="2" v-model="minutes" @input="inputHandler" required />
+				<input
+					type="number"
+					v-model="minutes"
+					@input="inputHandler"
+					min="0"
+					max="59"
+					size="2"
+					required
+				/>
 			</label>
 
 			<label>
 				<span>Seconds:</span>
-				<input size="2" v-model="seconds" @input="inputHandler" required />
+				<input
+					type="number"
+					v-model="seconds"
+					@input="inputHandler"
+					min="0"
+					max="59"
+					size="2"
+					required
+				/>
 			</label>
 		</fieldset>
 
