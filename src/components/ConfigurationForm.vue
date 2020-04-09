@@ -1,9 +1,25 @@
 <template>
 	<form @submit="submit">
 		<fieldset>
-			<legend>Text before</legend>
+			<legend>Text</legend>
 
-			<input size="10" v-model="textBefore" required />
+			<fieldset>
+				<legend>Countdown</legend>
+
+				<label>
+					<span>Before:</span>
+					<input size="10" v-model="text.countdown.before" required />
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>Lateness</legend>
+
+				<label>
+					<span>Before:</span>
+					<input size="10" v-model="text.lateness.before" required />
+				</label>
+			</fieldset>
 		</fieldset>
 
 		<fieldset>
@@ -33,7 +49,7 @@
 
 				<label>
 					<span>Color:</span>
-					<input type="color" v-model="backgroundColor" required />
+					<input type="color" v-model="background.color" required />
 				</label>
 
 				<label>
@@ -43,7 +59,7 @@
 						min="0"
 						max="1"
 						step="0.05"
-						v-model="backgroundOpacity"
+						v-model="background.opacity"
 						required
 					/>
 					<span>{{ background.opacity | opacity }}</span>
@@ -55,12 +71,12 @@
 
 				<label>
 					<span>Size:</span>
-					<input size="2" v-model="fontSize" required />
+					<input size="2" v-model="font.size" required />
 				</label>
 
 				<label>
 					<span>Color:</span>
-					<input type="color" v-model="fontColor" required />
+					<input type="color" v-model="font.color" required />
 				</label>
 			</fieldset>
 		</fieldset>
@@ -105,7 +121,12 @@ export default {
 				seconds: '00'
 			},
 			text: {
-				before: 'AFK'
+				countdown: {
+					before: 'AFK '
+				},
+				lateness: {
+					before: 'Late for '
+				}
 			},
 			background: {
 				color: '#ffffff',
@@ -145,56 +166,6 @@ export default {
 
 			set(value) {
 				this.time.seconds = this.formatTime(value)
-			}
-		},
-
-		textBefore: {
-			get() {
-				return this.text.before
-			},
-
-			set(value) {
-				this.text.before = value
-			}
-		},
-
-		backgroundColor: {
-			get() {
-				return this.background.color
-			},
-
-			set(value) {
-				this.background.color = value
-			}
-		},
-
-		backgroundOpacity: {
-			get() {
-				return this.background.opacity
-			},
-
-			set(value) {
-				this.background.opacity = value
-			}
-		},
-
-		fontSize: {
-			get() {
-				return this.font.size
-			},
-
-			set(value) {
-				this.font.size = value
-			}
-		},
-
-		fontColor: {
-			get() {
-				return this.font.color
-			},
-
-			set(value) {
-				this.font.color = value
 			}
 		}
 	},
